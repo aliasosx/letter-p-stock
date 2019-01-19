@@ -30,7 +30,7 @@
             <th scope="col">product Id</th>
             <th scope="col">Product Name</th>
             <th scope="col">Product Type</th>
-            <th scope="col">Minimum Quantity</th>
+            <th scope="col">Minimum</th>
             <th scope="col">Init Quantity</th>
             <th scope="col">Current Quantity</th>
             <th scope="col">Unit</th>
@@ -45,18 +45,18 @@
         <tbody>
           <tr *ngFor="let product of products">
             <th scope="row">{{ product.id }}</th>
-            <td>{{ product.productName }}</td>
-            <td>{{ product.productTypeCode }}</td>
-            <td>{{ product.minimumStock }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.currentQuantity }}</td>
-            <td>{{ product.unitName }}</td>
-            <td>{{ product.cost |number}}</td>
-            <td>{{ product.price |number }}</td>
-            <td>{{ product.shopName }}</td>
-            <td>{{ product.stockDate |date: 'dd-MMM-yyyy' }}</td>
-            <td>{{ product.expiryDate |date: 'dd-MMM-yyyy' }}</td>
-            <td>{{ product.username }}</td>
+            <td class="text-left">{{ product.food_name }}</td>
+            <td class="text-center">{{ product.productTypeCode }}</td>
+            <td class="text-center">{{ product.minimumStock }}</td>
+            <td class="text-center">{{ product.quantity }}</td>
+            <td class="text-center">{{ product.currentQuantity }}</td>
+            <td class="text-center">{{ product.unitName }}</td>
+            <td class="text-right">{{ product.cost |number}}</td>
+            <td class="text-right">{{ product.price |number }}</td>
+            <td class="text-left">{{ product.shopName }}</td>
+            <td class="text-center">{{ product.stockDate |date: 'dd-MMM-yyyy' }}</td>
+            <td class="text-center">{{ product.expiryDate |date: 'dd-MMM-yyyy' }}</td>
+            <td class="text-center">{{ product.username }}</td>
           </tr>
         </tbody>
       </table>
