@@ -1,22 +1,22 @@
 <div class="card">
   <div class="card-body">
     <div class="row-fluid">
-      <form>
-        <div class="form-row">
 
-          <div class="form-group col-md-4">
-            <label for="inputState">ປະເພດສິນຄ້າ</label>
-            <select id="inputState" class="form-control">
-              <option value="-1">ທັງໝົດ</option>
-              <option value="{{ type.id }}" *ngFor="let type of producttypes">{{ type.productTypeCode }}</option>
-            </select>
-          </div>
-          <div class="form-group col-md-8">
-            <label for="inputCity">ຊື່ສິນຄ້າ</label>
-            <input type="text" placeholder="inline search ..." class="form-control" id="inputCity">
-          </div>
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label for="inputState">ປະເພດສິນຄ້າ</label>
+          <select id="inputState" class="form-control">
+            <option value="-1">ທັງໝົດ</option>
+            <option value="{{ type.id }}" *ngFor="let type of producttypes">{{ type.productTypeCode }}</option>
+          </select>
         </div>
-      </form>
+        <div class="form-group col-md-8">
+          <label for="inputCity">ຊື່ສິນຄ້າ</label>
+          <input type="text" placeholder="inline search ..." class="form-control" id="inputCity" [(ngModel)]="searchText">
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -24,42 +24,58 @@
 <div class="card">
   <div class="card-body">
     <div>
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">product Id</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Product Type</th>
-            <th scope="col">Minimum</th>
-            <th scope="col">Init Quantity</th>
-            <th scope="col">Current Quantity</th>
-            <th scope="col">Unit</th>
-            <th scope="col">Cost</th>
-            <th scope="col">price</th>
-            <th scope="col">Vendor</th>
-            <th scope="col">Stock date</th>
-            <th scope="col">Expiry date</th>
-            <th scope="col">Create by</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products">
-            <th scope="row">{{ product.id }}</th>
-            <td class="text-left">{{ product.food_name }}</td>
-            <td class="text-center">{{ product.productTypeCode }}</td>
-            <td class="text-center">{{ product.minimumStock }}</td>
-            <td class="text-center">{{ product.quantity }}</td>
-            <td class="text-center">{{ product.currentQuantity }}</td>
-            <td class="text-center">{{ product.unitName }}</td>
-            <td class="text-right">{{ product.cost |number}}</td>
-            <td class="text-right">{{ product.price |number }}</td>
-            <td class="text-left">{{ product.shopName }}</td>
-            <td class="text-center">{{ product.stockDate |date: 'dd-MMM-yyyy' }}</td>
-            <td class="text-center">{{ product.expiryDate |date: 'dd-MMM-yyyy' }}</td>
-            <td class="text-center">{{ product.username }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row-fluid">
+        <table class="table table-bordered ">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">product Id</th>
+              <th scope="col">Product Name</th>
+              <th scope="col text-center">Product Type</th>
+              <th scope="col text-center">Minimum</th>
+              <th scope="col text-center">Init Quantity</th>
+              <th scope="col text-center">Current Quantity</th>
+              <th scope="col text-center">Unit</th>
+              <th scope="col text-center">Cost</th>
+
+              <th scope="col text-center">Vendor</th>
+              <th scope="col text-center">Stock date</th>
+              <th scope="col text-center">Expiry date</th>
+              <th scope="col text-center">Create by</th>
+              <th scope="col text-center">Command</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products | productFilter:searchText">
+              <th scope="row text-center">{{ product.id }}</th>
+              <td class="text-left">{{ product.productName }}</td>
+              <td class="text-center">{{ product.productTypeCode }}</td>
+              <td class="text-center">{{ product.minimumStock }}</td>
+              <td class="text-center">{{ product.initQuantity }}</td>
+              <td class="text-center">{{ product.currentQuantity }}</td>
+              <td class="text-center">{{ product.unitName }}</td>
+              <td class="text-right">{{ product.cost |number}}</td>
+
+              <td class="text-left">{{ product.shopName }}</td>
+              <td class="text-center">{{ product.updatedAt |date: 'dd-MMM-yyyy' }}</td>
+              <td class="text-center">{{ product.expiryDate |date: 'dd-MMM-yyyy' }}</td>
+              <td class="text-center">{{ product.username }}</td>
+              <td class="text-center">
+                <div class="row-fluid text-center col-md-12">
+                  <button mat-raised-button color="warn" (click)="updateProduct(product.id)" class="btn-command">Update</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="col float-right">
+      <button mat-raised-button color="primary" (click)="openDialog()" class="custom-button">Add new</button>
+    </div>
+
   </div>
 </div>

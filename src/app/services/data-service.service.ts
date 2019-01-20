@@ -42,4 +42,50 @@ export class DataServiceService {
       });
     });
   }
+  getVendors(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'vendors', this.httpOptions).subscribe(res => {
+
+        resolve(res);
+      });
+    });
+  }
+  getUnits(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'units', this.httpOptions).subscribe(res => {
+
+        resolve(res);
+      });
+    });
+  }
+  getFoods(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'foods', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  createProduct(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.post(this.url + 'products', data, this.httpOptions).subscribe(res => {
+
+        resolve(res);
+      });
+    });
+  }
+
+  updateProduct(id, data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.put(this.url + 'products/' + id, data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getProductsById(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'products/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

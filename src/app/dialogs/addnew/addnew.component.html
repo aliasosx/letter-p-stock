@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="addNewProductForm" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <div class="card-header">
+          <span class="h5">Add new Product</span>
+        </div>
+        <div class="card-body">
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="barcodetxt">Barcode</label>
+              <input type="number" class="form-control" id="barcodetxt" placeholder="Barcode" required formControlName="barcode">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="productCode">Product code</label>
+              <input type="text" class="form-control" id="productCode" placeholder="product Code" required
+                formControlName="productCode">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="productName">Product name</label>
+              <input type="text" class="form-control" id="productName" placeholder="productName" required
+                formControlName="productName">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="productTypeId">Product Type</label>
+              <select class="form-control" formControlName="productTypeId">
+                <option value="-1" disabled>---------</option>
+                <option value="{{ producttype.id }}" *ngFor="let producttype of productTypes">{{
+                  producttype.productTypeCode }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="foodId">Food</label>
+              <select class="form-control" formControlName="foodId">
+                <option value="-1">---------</option>
+                <option value="{{ food.id }}" *ngFor="let food of foods">{{ food.food_name }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="vendorId">Vendor</label>
+              <select class="form-control" formControlName="vendorId">
+                <option value="-1" disabled>---------</option>
+                <option value="{{ v.id  }}" *ngFor="let v of vendors">{{ v.shopName }}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="minimumStock">Minimum</label>
+              <input type="number" class="form-control" id="minimumStock" placeholder="minimumStock" required
+                formControlName="minimumStock">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="initQuantity">Init Quantity</label>
+              <input type="number" class="form-control" id="initQuantity" required formControlName="initQuantity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="currentQuantity">Current Quantity</label>
+              <input type="number" class="form-control" id="currentQuantity" required formControlName="currentQuantity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="unitId">Unit</label>
+              <select class="form-control" formControlName="unitId">
+                <option value="-1" disabled>---------</option>
+                <option value="{{ unit.id }}" *ngFor="let unit of units">{{
+                  unit.unitName }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="cost">Cost</label>
+              <input type="number" class="form-control" id="cost" required formControlName="cost">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="expiryDate">Expire date</label>
+              <input type="date" class="form-control" id="expiryDate" required formControlName="expiryDate">
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col col-md-6 text-right">
+              <button mat-raised-button color="primary" class="col-md-12" [disabled]="addNew" type="submit">Save</button>
+            </div>
+            <div class="col col-md-6 text-left">
+              <button mat-raised-button color="warn" class="col-md-12" [disabled]="update" type="button" (click)="updateProductById()">Update</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

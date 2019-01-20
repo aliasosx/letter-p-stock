@@ -9,6 +9,11 @@ import { StocksComponent } from './pages/stocks/stocks.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProductFilterPipe } from './pipes/product-filter.pipe';
+import { ViewComponent } from './dialogs/view/view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule, MatIconModule, MatCardModule, MatSnackBarModule } from '@angular/material';
+import { AddnewComponent } from './dialogs/addnew/addnew.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +22,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     StocksComponent,
     DashboardComponent,
     LoginComponent,
+    ProductFilterPipe,
+    ViewComponent,
+    AddnewComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,8 +32,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatIconModule,
+    MatCardModule,
+    MatSnackBarModule,
   ],
-  providers: [],
+  entryComponents: [
+    AddnewComponent,
+  ],
+
+  providers: [ProductFilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
