@@ -14,6 +14,7 @@ import { ViewComponent } from './dialogs/view/view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule, MatIconModule, MatCardModule, MatSnackBarModule } from '@angular/material';
 import { AddnewComponent } from './dialogs/addnew/addnew.component';
+import { UpdateStockComponent } from './dialogs/update-stock/update-stock.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddnewComponent } from './dialogs/addnew/addnew.component';
     ProductFilterPipe,
     ViewComponent,
     AddnewComponent,
+    UpdateStockComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { AddnewComponent } from './dialogs/addnew/addnew.component';
   ],
   entryComponents: [
     AddnewComponent,
+    UpdateStockComponent,
   ],
 
   providers: [ProductFilterPipe],

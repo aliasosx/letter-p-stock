@@ -71,6 +71,8 @@ export class StocksComponent implements OnInit {
         }
       });
     });
+  }
+  async updateStockQuantity() {
 
   }
 }
