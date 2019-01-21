@@ -62,7 +62,8 @@
                 <div class="row-fluid text-center col-md-12">
                   <button mat-raised-button color="warn" (click)="updateProduct(product.id)" class="btn-command">update
                     info</button>
-                  <button mat-raised-button color="primary" (click)="loadProducts()" class="btn-command">update Stock</button>
+                  <button mat-raised-button color="primary" (click)="updateStockQuantity(product)" class="btn-command">update
+                    Stock</button>
                 </div>
               </td>
             </tr>
@@ -74,8 +75,11 @@
 </div>
 <div class="card">
   <div class="card-body">
-    <div class="col float-right">
-      <button mat-raised-button color="primary" (click)="openDialog()" class="custom-button">Add new</button>
+    <div class="row text-right">
+      <div class="col">
+        <button mat-raised-button color="primary" (click)="openDialog()" class="custom-button">Add new</button>
+      </div>
     </div>
+
   </div>
 </div>
