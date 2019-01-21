@@ -88,4 +88,11 @@ export class DataServiceService {
       });
     });
   }
+  getStockByProdId(prodId): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'stocks/' + prodId, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

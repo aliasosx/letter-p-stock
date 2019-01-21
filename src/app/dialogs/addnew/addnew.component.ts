@@ -24,6 +24,9 @@ export class AddnewComponent implements OnInit {
   foods: any;
   addNew = false;
   update = true;
+  _disabled_init_q = false;
+  _disabled_mini_q = false;
+  _disabled_curr_q = false;
 
   ngOnInit() {
     this.addNewProductForm = new FormGroup({
@@ -55,6 +58,9 @@ export class AddnewComponent implements OnInit {
       this.addNewProductForm.setValue(this.data[0]);
       this.update = false;
       this.addNew = true;
+      this._disabled_curr_q = true;
+      this._disabled_init_q = true;
+      this._disabled_mini_q = true;
     }
   }
   async loadProductTypes() {

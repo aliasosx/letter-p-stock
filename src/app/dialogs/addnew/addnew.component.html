@@ -47,16 +47,18 @@
 
             <div class="form-group col-md-4">
               <label for="minimumStock">Minimum</label>
-              <input type="number" class="form-control" id="minimumStock" placeholder="minimumStock" required
-                formControlName="minimumStock">
+              <input type="number" class="form-control" id="minimumStock" [disabled]="_disabled_mini_q" placeholder="minimumStock"
+                required formControlName="minimumStock">
             </div>
             <div class="form-group col-md-4">
               <label for="initQuantity">Init Quantity</label>
-              <input type="number" class="form-control" id="initQuantity" required formControlName="initQuantity">
+              <input type="number" class="form-control" id="initQuantity" [disabled]="_disabled_init_q" required
+                formControlName="initQuantity">
             </div>
             <div class="form-group col-md-4">
               <label for="currentQuantity">Current Quantity</label>
-              <input type="number" class="form-control" id="currentQuantity" required formControlName="currentQuantity">
+              <input type="number" class="form-control" id="currentQuantity" [disabled]="_disabled_curr_q" required
+                formControlName="currentQuantity">
             </div>
             <div class="form-group col-md-4">
               <label for="unitId">Unit</label>
