@@ -3,15 +3,7 @@
     <div class="row-fluid">
 
       <div class="form-row">
-
-        <div class="form-group col-md-4">
-          <label for="inputState">ປະເພດສິນຄ້າ</label>
-          <select id="inputState" class="form-control">
-            <option value="-1">ທັງໝົດ</option>
-            <option value="{{ type.id }}" *ngFor="let type of producttypes">{{ type.productTypeCode }}</option>
-          </select>
-        </div>
-        <div class="form-group col-md-8">
+        <div class="form-group col-sm-12 col-md-12">
           <label for="inputCity">ຊື່ສິນຄ້າ</label>
           <input type="text" placeholder="inline search ..." class="form-control" id="inputCity" [(ngModel)]="searchText">
         </div>
@@ -59,10 +51,10 @@
               <td class="text-center">{{ product.expiryDate |date: 'dd-MMM-yyyy' }}</td>
               <td class="text-center">{{ product.username }}</td>
               <td class="text-center">
-                <div class="row-fluid text-center col-md-12">
-                  <button mat-raised-button color="warn" (click)="updateProduct(product.id)" class="btn-command">update
+                <div class="row-fluid text-center">
+                  <button mat-raised-button color="warn" (click)="updateProduct(product.id)" class="custom-btn">update
                     info</button>
-                  <button mat-raised-button color="primary" (click)="updateStockQuantity(product)" class="btn-command">update
+                  <button mat-raised-button color="primary" (click)="updateStockQuantity(product)" class="custom-btn ">update
                     Stock</button>
                 </div>
               </td>

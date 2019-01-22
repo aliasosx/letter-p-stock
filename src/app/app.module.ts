@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule, MatIconModule, MatCardModule, MatSnackBarModule } from '@angular/material';
 import { AddnewComponent } from './dialogs/addnew/addnew.component';
 import { UpdateStockComponent } from './dialogs/update-stock/update-stock.component';
+import { RecipesComponent } from './pages/recipes/recipes.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UpdateStockComponent } from './dialogs/update-stock/update-stock.compon
     ViewComponent,
     AddnewComponent,
     UpdateStockComponent,
+    RecipesComponent,
   ],
   imports: [
     BrowserModule,
