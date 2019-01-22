@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>ສັ່ງຊື້ ສິນຄ້າ </h1>
+<div mat-dialog-content>
+  <form [formGroup]="addPurchaseForm">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-sm-12 col-md-6">
+            <label for="CurrentQuantity">ສິນຄ້າ</label>
+            <select class="form-control" formControlName="productId" (change)="productSelected($event.target.value)">
+              <option value="" disabled>------</option>
+              <option value="{{ product.id }}" *ngFor="let product of products">{{ product.productName }}</option>
+            </select>
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="quantity">ຈຳນວນ</label>
+            <input type="number" class="form-control" (keyup)="calculateTotal()" formControlName="quantity">
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="price">ລາຄາ</label>
+            <input type="number" class="form-control" (keyup)="calculateTotal()" formControlName="price">
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="total">ລວມ</label>
+            <input type="number" class="form-control" readonly formControlName="total">
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="purchaseDate">ວັນທີ່ຊື້</label>
+            <input type="date" class="form-control" formControlName="purchaseDate">
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="invoiceNo">ບິນເລກທີ</label>
+            <input type="text" class="form-control" formControlName="invoiceNo">
+          </div>
+          <div class="col col-sm-12 col-md-6">
+            <label for="vendorId">ຜຸ້ສະໜອງ</label>
+            <select class="form-control" formControlName="vendorId" (change)="vendorSelected($event.target.value)">
+              <option value="-1" disabled>------</option>
+              <option value="{{ v.id }}" *ngFor="let v of vendors">{{ v.shopName }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col col-sm-12 col-md-12 text-right">
+            <button mat-raised-button color="primary" type="submit" (click)="createPurchase()">ບັນທຶກ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

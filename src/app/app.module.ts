@@ -12,10 +12,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from './pipes/product-filter.pipe';
 import { ViewComponent } from './dialogs/view/view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule, MatIconModule, MatCardModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule, MatIconModule, MatCardModule, MatSnackBarModule, MatDividerModule } from '@angular/material';
 import { AddnewComponent } from './dialogs/addnew/addnew.component';
 import { UpdateStockComponent } from './dialogs/update-stock/update-stock.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
+import { PurchasesComponent } from './pages/purchases/purchases.component';
+import { AddPurchaseComponent } from './dialogs/add-purchase/add-purchase.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { RecipesComponent } from './pages/recipes/recipes.component';
     AddnewComponent,
     UpdateStockComponent,
     RecipesComponent,
+    PurchasesComponent,
+    AddPurchaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +48,12 @@ import { RecipesComponent } from './pages/recipes/recipes.component';
     MatIconModule,
     MatCardModule,
     MatSnackBarModule,
+    MatDividerModule,
   ],
   entryComponents: [
     AddnewComponent,
     UpdateStockComponent,
+    AddPurchaseComponent,
   ],
 
   providers: [ProductFilterPipe],

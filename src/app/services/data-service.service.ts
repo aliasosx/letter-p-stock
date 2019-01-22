@@ -102,5 +102,18 @@ export class DataServiceService {
       });
     });
   }
-
+  getPurchase(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.get(this.url + 'purchaseshow', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  createPurchase(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._http.post(this.url + 'purchases', data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }
