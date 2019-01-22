@@ -1,20 +1,24 @@
-<h1 mat-dialog-title>ອັບເດດ ຈຳນວນສິນຄ້າ</h1>
+<h1 mat-dialog-title>ອັບເດດ ຈຳນວນສິນຄ້າ ຂອງ {{ data.productName }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="updateStockForm">
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col col-sm-12 col-md-3">
-            <label for="CurrentQuantity">ຈຳນວນປະຈຸບັນ</label>
+            <label for="CurrentQuantity">ຈຳນວນປະຈຸບັນ </label>
             <input type="number" class="form-control" formControlName="currentQuantity">
           </div>
           <div class="col col-sm-12 col-md-3">
             <label for="CurrentQuantity">ເພີ່ມຂື້ນ</label>
-            <input type="number" class="form-control" formControlName="increaseQuantity" (keyup)="calculateFinal()">
+            <select class="form-control" (change)="updateCrDr($event.target.value)">
+              <option value="-1" disabled>--------</option>
+              <option value="CR">ເພີ່ມຂື້ນ</option>
+              <option value="DR">ຫຼຸດລົງ</option>
+            </select>
           </div>
           <div class="col col-sm-12 col-md-3">
-            <label for="CurrentQuantity">ຫຼຸດລົງ</label>
-            <input type="number" class="form-control" formControlName="decreaseQuantity" (keyup)="calculateFinal()">
+            <label for="CurrentQuantity">ຈຳນວນ</label>
+            <input type="number" class="form-control" formControlName="newQuantity" (keyup)="calculateFinal()">
           </div>
           <div class="col col-sm-12 col-md-3">
             <label for="CurrentQuantity">ຍອດໃໝ່</label>

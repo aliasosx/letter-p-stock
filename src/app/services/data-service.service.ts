@@ -95,11 +95,12 @@ export class DataServiceService {
       });
     });
   }
-  updateStocks(id, data): Promise<any> {
+  updateStocks(data): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._http.put(this.url + 'stocktrackings/' + id, data, this.httpOptions).subscribe(res => {
+      this._http.post(this.url + 'stockupdate', data, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
   }
+
 }

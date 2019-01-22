@@ -5,6 +5,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 
+
 @Component({
   selector: 'app-update-stock',
   templateUrl: './update-stock.component.html',
@@ -12,14 +13,16 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class UpdateStockComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<UpdateStockComponent>, private dataService: DataServiceService, private auth: AuthService, private _router: Router, @Inject(MAT_DIALOG_DATA) private data) { }
+  constructor(private dialogRef: MatDialogRef<UpdateStockComponent>, private dataService: DataServiceService, private auth: AuthService, private _router: Router, @Inject(MAT_DIALOG_DATA) public data) { }
   updateStockForm: FormGroup;
   currentUser: any;
+  crdr: any;
+  remarks: string;
+
   ngOnInit() {
     this.updateStockForm = new FormGroup({
       'currentQuantity': new FormControl({ value: 0, disabled: true }),
-      'increaseQuantity': new FormControl(0),
-      'decreaseQuantity': new FormControl(0),
+      'newQuantity': new FormControl(0),
       'totalVolume': new FormControl({ value: 0, disabled: true })
     });
     if (this.data) {
@@ -31,27 +34,54 @@ export class UpdateStockComponent implements OnInit {
     this.dialogRef.close('exit');
   }
   calculateFinal() {
-    const finalValue = this.data.currentQuantity + this.updateStockForm.get('increaseQuantity').value - this.updateStockForm.get('decreaseQuantity').value;
-    this.updateStockForm.get('totalVolume').setValue(finalValue);
+    //console.log(this.crdr);
+    if (this.crdr == 'CR') {
+      const finalValue = this.data.currentQuantity + this.updateStockForm.get('newQuantity').value;
+      this.updateStockForm.get('totalVolume').setValue(finalValue);
+    } else {
+      const finalValue = this.data.currentQuantity - this.updateStockForm.get('newQuantity').value;
+      this.updateStockForm.get('totalVolume').setValue(finalValue);
+    }
   }
   async updateStock() {
-    let stock = {
-      'used': this.updateStockForm.get('totalVolume').value,
-      'userId': this.currentUser.id
-    }
-    let a = await this.dataService.updateStocks(this.data.id, stock).then((res) => {
-      if (res.status == 'success') {
-        this.dialogRef.close({ status: 'success' });
-      } else {
-        return;
+    //console.log(this.data.id);
+    let StockId = await this.dataService.getStockByProdId(this.data.id).then(async (res) => {
+      let stockHistory = {
+        'stockId': res[0].id,
+        'beforeQuantity': this.data.currentQuantity,
+        'topup': this.updateStockForm.get('newQuantity').value,
+        'currentQuantity': this.updateStockForm.get('totalVolume').value,
+        'sign': this.crdr,
+        'remark': this.remarks,
+        'userId': this.currentUser.id
       }
+      let m = await this.dataService.updateStocks(stockHistory).then((res) => {
+        if (res.status == 'success') {
+          this.dialogRef.close({ status: 'success' });
+        } else {
+          alert('Cannot update stock please contact admin');
+          return;
+        }
+      });
 
-    })
+    }).catch((err) => {
+      alert('Something went wrong ' + err);
+      return;
+    });
   }
   async getUserInfo() {
     let c = await this.auth.tokenVerify(localStorage.getItem('abcd')).then((res) => {
-      console.log(res);
+      //console.log(res);
       this.currentUser = res;
     });
+  }
+  async updateCrDr(e) {
+    this.crdr = e;
+    if (e == 'CR') {
+      this.remarks = 'Topup';
+    } else {
+      this.remarks = 'Decreasing';
+    }
+    this.calculateFinal();
   }
 }

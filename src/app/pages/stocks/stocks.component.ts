@@ -75,6 +75,18 @@ export class StocksComponent implements OnInit {
   }
   async updateStockQuantity(product) {
     const modalRef = this.dialog.open(UpdateStockComponent, { width: '800px', data: product });
-
+    modalRef.afterClosed().subscribe(res => {
+      if (res.status == 'success') {
+        this.snackbar.open('update Stock successfully', 'OK', {
+          duration: 2000,
+        });
+        this.loadProducts();
+      } else {
+        this.snackbar.open('update Stock fail', 'OK', {
+          duration: 2000,
+        });
+        this.loadProducts();
+      }
+    });
   }
 }
