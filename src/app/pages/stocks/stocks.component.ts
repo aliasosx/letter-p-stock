@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/
 import { AddnewComponent } from 'src/app/dialogs/addnew/addnew.component';
 import { UpdateStockComponent } from 'src/app/dialogs/update-stock/update-stock.component';
 
+declare var swal: any;
+
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
@@ -87,6 +89,13 @@ export class StocksComponent implements OnInit {
         });
         this.loadProducts();
       }
+    });
+  }
+  successAlert(msg) {
+    swal({
+      title: 'ເພີ່ມສິນຄ້າ',
+      text: 'ການເພີ່ມສິນຄ້າ ສຳເລັດ',
+      icon: 'success',
     });
   }
 }
