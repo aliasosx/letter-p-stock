@@ -19,6 +19,7 @@ import { RecipesComponent } from './pages/recipes/recipes.component';
 import { PurchasesComponent } from './pages/purchases/purchases.component';
 import { AddPurchaseComponent } from './dialogs/add-purchase/add-purchase.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { AddPurchaseComponent } from './dialogs/add-purchase/add-purchase.compon
     MatIconModule,
     MatCardModule,
     MatSnackBarModule,
-    MatDividerModule,
+    MatDividerModule
   ],
   entryComponents: [
     AddnewComponent,

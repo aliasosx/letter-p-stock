@@ -1,9 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/cores/auth.service';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AddPurchaseComponent } from 'src/app/dialogs/add-purchase/add-purchase.component';
+
+declare var swal: any;
 
 @Component({
   selector: 'app-purchases',
@@ -40,10 +43,23 @@ export class PurchasesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if (res.status == 'success') {
         this.loadPurchaselist();
+        this.infoAlert('Add purchase successfully');
+        /*
         this.snackbar.open('Add purchase successfully', 'OK', {
           duration: 2000,
         });
+        */
       }
     });
   }
+
+  infoAlert(msg) {
+    swal({
+      title: "ສຳເລັດ!",
+      text: "ສຳເລັດການຊື້!",
+      icon: "success",
+      button: "ປິດ",
+    });
+  }
 }
+
